@@ -1,0 +1,4 @@
+exportPattern("^[[:alpha:]]+")
+useDynLib(hdInference, .registration=TRUE)
+export(glasso_nonconvex_constrained_cv)
+import(MASS)
