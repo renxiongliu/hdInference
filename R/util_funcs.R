@@ -1,4 +1,10 @@
-onUnload <- function (libpath) { library.dynam.unload("hdInference", libpath)}
+# .onUnload <- function (libpath) {
+#   library.dynam.unload("glasso", libpath)
+# }
+#
+# .onUnload <- function (libpath) {
+#   library.dynam.unload("SFGen", libpath)
+# }
 
 norm_vec_inf <- function(X){ return(max(abs(X))) }
 tr_mat <- function(X){  return(sum(diag(X)))  }

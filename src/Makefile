@@ -1,9 +1,9 @@
 all : Rfuncs
 
-Rfuncs:  
+Rfuncs:
 	R CMD SHLIB glasso.c
 	R CMD SHLIB SFGen.c -o SFGen.so
 
-clean: 
+clean:
 	rm -f *.o *.so
 

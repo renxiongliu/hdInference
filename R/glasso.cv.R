@@ -105,7 +105,7 @@ glasso_nonconvex_constrained_cv = function(sim, bound=NULL, tau=NULL, num.fold=5
     val.idx <- partition[[i]]
     S.test <- cor(sim$data[val.idx,])
     S.train <- cor(sim$data[-val.idx,])
-    omega.path <- glasso_nonconvex_constrained_path(S.train,bound,tau)
+    omega.path <- glasso_nonconvex_constrained_path_R(S.train,bound,tau)
     small.tau.index <- rep(0,p*length(bound))
     for (j in seq_along(bound)){
       small.tau.index[((j-1)*p+1):(j*p)] = (j-1)*length(tau)*p + (p*(length(tau)-1)+1):(length(tau)*p)

@@ -131,7 +131,7 @@ glasso_path_new_Rwrapper <- function(Sigma.hat, lam, tau,method=1,rho=1.0,alpha=
   list(Omega=matrix(out_dc$Omega,nrow=p,ncol=p*lam_len),Omega_dc=matrix(out_dc$Omega_dc,nrow=p,ncol=p*lam_len*tau_len))
 }
 
-glasso_nonconvex_constrained_path = function(Sigma.hat,bound,tau,
+glasso_nonconvex_constrained_path_R = function(Sigma.hat,bound,tau,
   free_para_index=NULL,zero_para_index=NULL,rho=1.0,alpha=1.5,
   eps_abs=1e-5,eps_rel=1e-6, N.iter=2e3,dc.iter=1e1)
 {
@@ -193,7 +193,7 @@ glasso_nonconvex_constrained_single_warmstart = function(Sigma.hat,bound,tau=1e-
     zero_para_index = zero_para_index - 1
   }
   tau_max = max(tau, 1)
-  omega = glasso_nonconvex_constrained_path(Sigma.hat,bound,tau_max,
+  omega = glasso_nonconvex_constrained_path_R(Sigma.hat,bound,tau_max,
                                                free_para_index=free_para_index,
                                                zero_para_index=zero_para_index,
                                                rho=rho,alpha=alpha, eps_abs=eps_abs,
@@ -323,7 +323,7 @@ inference_constrained <- function(sim, para_index, bound=NULL, tau=NULL, inferen
       tau <- sort(tau,decreasing=TRUE) ########### user-specified sequence of tau for warmstart
     }
   }
-  omega_warmstart_path = glasso_nonconvex_constrained_path(sim$sigmahat,bound,tau,free_para_index=para_index,zero_para_index=para_index)$Omega_dc
+  omega_warmstart_path = glasso_nonconvex_constrained_path_R(sim$sigmahat,bound,tau,free_para_index=para_index,zero_para_index=para_index)$Omega_dc
   omega.null = omega_warmstart_path[,(p*(length(tau)-1)+1):(p*length(tau))]
 
   ## compute alternative
